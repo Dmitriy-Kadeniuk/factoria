@@ -2,7 +2,8 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
+
 
 define('LARAVEL_START', microtime(true));
 
@@ -23,8 +24,11 @@ $app->handleRequest(Request::capture());
 
 Route::get('/', function() {
     /**
-     * @var \Illuminate\Cache\Repository $cashe
+     * @var \Illuminate\Cache\Repository $cache
      */
-    $cashe = app()->make('cache');
+    $cache = app('cache');
+    $cache->put('key', 'value', 3600);
+    dd($cache->get('key'));
     return 'Cache cleared';
 });
+
