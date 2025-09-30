@@ -2,7 +2,6 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 
 define('LARAVEL_START', microtime(true));
@@ -22,13 +21,5 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 $app->handleRequest(Request::capture());
 
 
-Route::get('/', function() {
-    /**
-     * @var \Illuminate\Cache\Repository $cache
-     */
-    $cache = app('cache');
-    $cache->put('key', 'value', 3600);
-    dd($cache->get('key'));
-    return 'Cache cleared';
-});
+
 
